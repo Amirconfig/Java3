@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Appointment Information</title>
+</head>
+<body>
+    <h1>Appointment Page</h1>
+    <form method="post" action="#" th:action="@{/addAppointment}" th:object="${appointments}">
+        <input type="number" th:field="*{id}" hidden/>
+        First Name: <input type="text" th:field="*{firstName}" /><br><br>
+        Email: <input type="text" th:field="*{email}" /><br><br>
+        Appointment Date: <input type="date" th:field="*{appointmentDate}" /><br><br>
+        Appointment Time: <input type="time" th:field="*{appointmentTime}" /><br><br>
+        <input type="submit" value="Add Appointment" />
+    </form>
+
+    <a href="/showAppointment">Click </a>here to see all appointments
+</body>
+</html>

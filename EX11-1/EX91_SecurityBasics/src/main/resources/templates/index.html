@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Unsecured Page</title>
+</head>
+<body>
+    <h1>Welcome to Spring Security...</h1>
+    <h2>This is an unsecured page, and anyone can access it.</h2>
+    <br>
+    <h2>You can access the secured page after authenticate yourself properly</h2>
+    <h3>Authenticate <a href="#" th:href="@{/secured/user}">here</a></h3>
+</body>
+</html>

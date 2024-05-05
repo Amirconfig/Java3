@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add a new Book</title>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/auth.css}">
+
+</head>
+<body>
+
+<h1>Add a new Book</h1>
+
+<form th:object="${bookForm}" th:action="@{/add/book}" method="post">
+	<div>
+    <label for="title">Title:</label>
+    <input type="text" id="title" name="title" required/>
+</div>
+	<div>
+    <label for="author">Author:</label>
+    <input type="text" id="author" name="author" required/>
+</div>
+    <button type="submit">Add Book!</button>
+</form>
+
+<!-- Display based on user authentication -->
+<div th:if="${#authorization.expression('isAuthenticated()')}">
+    <!-- If user is logged in, show Logout button -->
+    <br>
+    <div>
+    <a th:href="@{/logout}"><button>Logout</button></a>
+    </div>
+</div>
+
+<!-- Back to index link -->
+<p><a th:href="@{/}">Back to index</a></p>
+
+</body>
+</html>

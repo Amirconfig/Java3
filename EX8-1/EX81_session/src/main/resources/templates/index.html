@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.com">
+<head>
+    <meta charset="UTF-8">
+    <title>Phone Cart</title>
+</head>
+<body>
+    <h2>Add New Phone to you Cart</h2>
+    <form method="post" action="#" th:action="@{/insertPhone}" th:object="${phone}">
+        ID: <input type="text" name="id" th:field="*{id}"/><br>
+        Model: <input type="text" name="model" th:field="*{model}"/><br>
+        Price: <input type="text" name="price" th:field="*{price}"/><br>
+        <input type="submit" value="Add to Cart"/>
+    </form>
+    
+    <h2>Your Phone Cart:</h2>
+    <table th:if="${session.phoneList != null}">
+        <tr>
+            <th>ID</th>
+            <th>Model</th>
+            <th>Price</th>
+        </tr>
+        <tr th:each="phone : ${session.phoneList}">
+            <td th:text="${phone.id}"></td>
+            <td th:text="${phone.model}"></td>
+            <td th:text="${phone.price}"></td>
+        </tr>
+    </table>
+    
+</body>
+</html>

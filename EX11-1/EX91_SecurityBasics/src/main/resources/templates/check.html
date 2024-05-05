@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Check Page</title>
+</head>
+<body>
+    <h1>Check Page</h1>
+    <p th:if="${#authorization.expression('isAuthenticated()')}">
+        You are logged in. Your username is <span th:text="${#authentication.name}">Username</span>.
+    </p>
+    <p th:unless="${#authorization.expression('isAuthenticated()')}">
+        You are not logged in. Please <a th:href="@{/login}">login</a>.
+    </p>
+    
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" value="Logout" th:if="${#authorization.expression('isAuthenticated()')}"/>
+    </form>
+</body>
+</html>

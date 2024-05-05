@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Login</title>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/auth.css}">
+</head>
+
+<body>
+
+	<h1>Enter your information to log in</h1>
+
+	<form method="POST" th:action="@{/login}">
+		<div>
+			<label for="username">User name:</label>
+			<input type="text" name="username" placeholder="" required="required" />
+		</div>
+		<div>
+			<label for="password">Password:</label>
+			<input name="password" placeholder="" required="required" type="password" />
+		</div>
+		<div>
+			<button id=" login-sumbit" name="login-sumbit" type="submit">Log in</button>
+		</div>
+	</form>
+
+	<p class="error" th:if="${param.error}">
+		Invalid username and/or password.
+	</p>
+
+	<p>Not registered? <a th:href="@{/register}">Register here</a></p>
+
+	<p><a th:href="@{/}">Back to index</a></p>
+
+</body>
+
+</html>

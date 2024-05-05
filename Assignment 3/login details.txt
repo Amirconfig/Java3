@@ -1,0 +1,11 @@
+CLIENT 1: 
+login: test
+password: test
+
+CLIENT 2:
+login: test1
+password: test1
+
+ADMIN:
+login: root
+password: root

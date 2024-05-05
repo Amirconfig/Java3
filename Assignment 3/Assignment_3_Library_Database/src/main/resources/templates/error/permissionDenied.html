@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Permission Denied</title>
+
+</head>
+<body>
+
+<h1>Permission Denied</h1>
+
+<h2>You do not have access to this area</h2>
+
+<!-- Display based on user authentication -->
+<div th:if="${#authorization.expression('isAuthenticated()')}">
+    <!-- If user is logged in, show Logout button -->
+    <a th:href="@{/logout}"><button>Logout</button></a>
+</div>
+
+<div th:unless="${#authorization.expression('isAuthenticated()')}">
+    <!-- If user is not logged in, show Login button -->
+    <a th:href="@{/login}"><button>Login</button></a>
+</div>
+
+<!-- Back to index link -->
+<p><a th:href="@{/}">Back to index</a></p>
+
+</body>
+</html>

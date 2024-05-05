@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>View Book</title>
+</head>
+<body>
+
+<h1 th:text="'Reviews for ' + ${book.title} + ' by ' + ${book.author}">Reviews for {title} by {author}</h1>
+
+<!-- List of Reviews -->
+<div th:if="${book.reviews.size() > 0}">
+    <!-- List of Reviews -->
+    <ul>
+        <li th:each="review : ${book.reviews}">
+            <p th:text="${review.text}"></p>
+        </li>
+    </ul>
+</div>
+<div th:unless="${book.reviews.size() > 0}">
+    <h2>No reviews yet. Be the first to review it!</h2>
+</div>
+
+<!-- Display based on user authentication -->
+<div th:if="${#authorization.expression('isAuthenticated()')}">
+    <!-- If user is logged in -->
+        <div>
+    <a method="get" th:href="@{/add/review(bookId=${book.id})}" >Add a review</a></div>
+    <br>
+    <a th:href="@{/logout}"><button>Logout</button></a>
+</div>
+
+<div th:unless="${#authorization.expression('isAuthenticated()')}">
+    <!-- If user is not logged in -->
+    <p>Want to leave a review? <a th:href="@{/login}">Login here</a></p>
+</div>
+
+<!-- Back to index link -->
+<p><a th:href="@{/}">Back to index</a></p>
+
+</body>
+</html>

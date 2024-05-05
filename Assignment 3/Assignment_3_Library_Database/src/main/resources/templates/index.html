@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Welcome to the Library Database</title>
+</head>
+
+<body>
+
+	<h1>Welcome to the Library Database</h1>
+
+	<!-- Book table -->
+	<table border="1">
+		<thead>
+			<tr>
+				<th>Title</th>
+				<th>Author</th>
+				<th>Reviews</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="book : ${books}">
+				<td th:text="${book.title}"></td>
+				<td th:text="${book.author}"></td>
+				<td>
+					<a th:href="@{/view/review(bookId=${book.id})}">View</a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<!-- Login/Logout/Add Book -->
+	<div th:if="${#authorization.expression('isAuthenticated()')}">
+		<div th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}"><br>
+			<div>
+			<a  th:href="@{/add/book}">Add a Book</a></div>
+				
+
+		</div>
+		<div>
+			<br>
+		<button onclick="location.href='/logout'">Logout</button></div>
+	</div>
+	<div th:unless="${#authorization.expression('isAuthenticated()')}">
+		<p>Login <a th:href="@{/login}">here</a></p>
+	</div>
+
+</body>
+
+</html>

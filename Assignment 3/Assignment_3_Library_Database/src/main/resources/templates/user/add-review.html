@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Review</title>
+  	<link rel="stylesheet" type="text/css" th:href="@{/css/review.css}">
+
+</head>
+<body>
+
+<h1>Add your review!</h1>
+
+<form th:object="${reviewForm}" th:action="@{/add/review(bId=${book.id})}" method="post">
+	<div>
+    <textarea id="text" th:field="*{text}" placeholder="" required></textarea></div>
+    <br/>
+    
+    <button type="submit">Add Review!</button>
+</form>
+
+<!-- Back to index link -->
+<p><a th:href="@{/}">Back to index</a></p>
+
+</body>
+</html>

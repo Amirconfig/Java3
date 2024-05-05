@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${title}"></title>
+</head>
+<body>
+
+<div th:replace="~{fragments/header :: header}"></div>
+
+<section>
+    <h2>Course for <span th:text="${studentName}"></span></h2>
+
+    <ul>
+        <li th:each="course : ${courses}">
+			<span th:text="${course.name}"></span>: <span th:text="${course.grade}"></span>
+		</li>
+    </ul>
+	<br>
+    <a th:href="@{/add-course/{id}(id=${studentId})}">Add Course</a><br><br>
+
+    <a th:href="@{/}">Back to Index</a>
+
+</section>
+
+<div th:replace="~{fragments/footer :: footer}"></div>
+
+</body>
+</html>

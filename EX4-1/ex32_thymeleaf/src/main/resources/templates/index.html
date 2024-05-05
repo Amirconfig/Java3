@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Course List</title>
+
+<style>
+	/* Apply some basic styles to the entire page */
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    padding: 0;
+    background-color: #f5f5f5;
+}
+
+/* Style the page title */
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+/* Style the table */
+table {
+    width: 80%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Style table headers */
+th {
+    background-color: #333;
+    color: #fff;
+    text-align: left;
+    padding: 10px;
+}
+
+/* Style table rows */
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tr:hover {
+    background-color: #ddd;
+}
+
+/* Style form */
+h2 {
+    margin-top: 20px;
+    text-align: center;
+    color: #333;
+}
+
+form {
+    width: 80%;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Style form labels and inputs */
+label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="number"] {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Style form submit button */
+input[type="submit"] {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #555;
+}
+
+</style>
+</head>
+<body>
+    <h1>Course List</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Prefix</th>
+                <th>Code</th>
+                <th>Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="aCourse : ${courseList}">
+                <td th:text="${aCourse.id}">ID</td>
+                <td th:text="${aCourse.prefix}">Prefix</td>
+                <td th:text="${aCourse.code}">Code</td>
+                <td th:text="${aCourse.name}">Name</td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <h2>Add a New Course</h2>
+		<form method="post" action="#" th:action="@{/addCourse}">
+		    <label for="id">ID:</label>
+		    <input type="number" id="id" name="id" /><br>
+		    
+		    <label for="prefix">Prefix:</label>
+		    <input type="text" id="prefix" name="prefix" /><br>
+		    
+		    <label for="code">Code:</label>
+		    <input type="number" id="code" name="code" /><br>
+		    
+		    <label for="name">Name:</label>
+		    <input type="text" id="name" name="name" /><br>
+		    
+		    <input type="submit" value="Add Course!" />
+		</form>
+
+</body>
+</html>

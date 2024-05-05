@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${title}"></title>
+</head>
+<body>
+
+<div th:replace="~{fragments/header :: header}"></div>
+
+<section>
+
+    <h2>Select a Student to view courses</h2>
+    <select id="studentDropdown" th:field="*{selectedStudent}">
+        <option th:each="student : ${students}" th:value="${student.id}" th:text="${student.name}"></option>
+    </select>
+	<br><br>
+
+    <button onclick="viewCourses()">View Courses</button>
+</section>
+
+<div th:replace="~{fragments/footer :: footer}"></div>
+
+<script th:inline="javascript">
+    var students = [];
+
+    function viewCourses() {
+        // Get the selected student ID from the dropdown
+        var selectedStudentId = document.getElementById("studentDropdown").value;
+
+        // Redirect to the view-student page with the selected student ID
+        window.location.href = "/view-student?id=" + selectedStudentId;
+    }
+
+    /*]]>*/
+</script>
+
+</body>
+</html>

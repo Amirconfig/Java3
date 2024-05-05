@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Create a Mission</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        input, select {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Create a Mission</h1>
+
+<!-- Mission form starts here -->
+<form method="post" th:action="@{/addMission}" th:object="${mission}">
+    
+    <!-- Basic mission details -->
+    <fieldset>
+        <legend>Mission Details</legend>
+        <label for="missionTitle">Mission Title:</label>
+        <input type="text" id="missionTitle" th:field="*{title}" name="missionTitle" required placeholder="Enter mission title..." />
+        <br/>
+        <label for="agentNameList">Agent Name:</label>
+        <select id="agentNameList" name="agentNameList" th:field="*{agent}" required>
+            <option th:each="name: ${agentNames}" th:value="${name}" th:text="${name}"></option>
+        </select>
+    </fieldset>
+    
+    <!-- Gadget details -->
+    <fieldset>
+        <legend>Gadget Details</legend>
+        <label for="gadget1">Gadget 1:</label>
+        <input type="text" id="gadget1" th:field="*{gadget1}" placeholder="Enter gadget name..." />
+        <br/>
+        <label for="gadget2">Gadget 2:</label>
+        <input type="text" id="gadget2" th:field="*{gadget2}" placeholder="Enter gadget name..." />
+    </fieldset>
+    
+    <!-- Submission button -->
+    <input type="submit" value="Submit" />
+</form>
+
+<a href="/">Back to home</a>
+
+</body>
+</html>
